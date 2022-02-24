@@ -9,10 +9,10 @@ SimpleTimer::~SimpleTimer() {
   }
 }
 
-void SimpleTimer::Set(std::function<void(void)> callback, int interval_sec) {
-  thread_ = std::thread([callback, interval_sec]() {
-    std::chrono::seconds sec(interval_sec);
-    std::this_thread::sleep_for(sec);
-    callback();
+void SimpleTimer::Set(callback cb,
+                      std::chrono::system_clock::duration duration) {
+  thread_ = std::thread([cb, duration]() {
+    std::this_thread::sleep_for(duration);
+    cb();
   });
 }

@@ -5,14 +5,16 @@
 #include <thread>
 
 class SimpleTimer {
- public:
+public:
+  using callback = std::function<void(void)>;
+
   SimpleTimer() = default;
   ~SimpleTimer();
 
-  void Set(std::function<void(void)> callback, int interval_sec);
+  void Set(callback cb, std::chrono::system_clock::duration duration);
 
- private:
+private:
   std::thread thread_;
 };
 
-#endif  // SIMPLE_TIMER_H_
+#endif // SIMPLE_TIMER_H_

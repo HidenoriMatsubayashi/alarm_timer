@@ -9,6 +9,7 @@ set(BINARY_NAME alarm_timer)
 add_executable(${BINARY_NAME}
   "src/main.cc"
   "src/simple_timer.cc"
+  "src/multi_timer.cc"
 )
 
 target_include_directories(${BINARY_NAME} PRIVATE "src")
